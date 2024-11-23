@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr8y47mserlmf"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_70dhl"]
+[ext_resource type="Texture2D" uid="uid://bgbmjasadktlu" path="res://buttontextures/button1.png" id="2_yk02t"]
+[ext_resource type="Texture2D" uid="uid://dj7f2vlx2tgqy" path="res://buttontextures/button2.png" id="3_bogak"]
+[ext_resource type="Texture2D" uid="uid://d3hyrw6bwyjs3" path="res://buttontextures/button3.png" id="4_frabv"]
+[ext_resource type="Texture2D" uid="uid://bdw7xpv86ucqn" path="res://buttontextures/button4.png" id="5_7urjc"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_70dhl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 110.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Play" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_yk02t")
+texture_pressed = ExtResource("3_bogak")
+stretch_mode = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Quit" type="TextureButton" parent="CanvasLayer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("4_frabv")
+texture_pressed = ExtResource("5_7urjc")
+stretch_mode = 0
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Play" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer2/Quit" to="." method="_on_quit_pressed"]

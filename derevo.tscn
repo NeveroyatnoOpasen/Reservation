@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://co22vhmmcwibn"]
+
+[ext_resource type="Script" path="res://derevo.gd" id="1_40d0u"]
+[ext_resource type="Texture2D" uid="uid://n1cmwv6sgnvl" path="res://playertextures/1683900131_new_preview_97d489c0c103dc8349d8df70a3aa69ad.jpg" id="2_ewflw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3kb1"]
+size = Vector2(74, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7v8h"]
+size = Vector2(75, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy4as"]
+size = Vector2(75, 74)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_40d0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.05176e-05, -1)
+scale = Vector2(0.0616667, 0.0616667)
+texture = ExtResource("2_ewflw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r3kb1")
+
+[node name="Death" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_m7v8h")
+
+[node name="Death2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death2"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_fy4as")
+
+[connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
+[connection signal="body_exited" from="Death2" to="." method="_on_death_2_body_exited"]

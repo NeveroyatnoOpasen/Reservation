@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://b64u15vi1p4g3"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_kpvi1"]
+[ext_resource type="PackedScene" uid="uid://dvahssxcwi0vf" path="res://player.tscn" id="2_5yuar"]
+[ext_resource type="Texture2D" uid="uid://ddqxkrfpw08m6" path="res://textures/dirt1.png" id="2_df3go"]
+[ext_resource type="PackedScene" uid="uid://co22vhmmcwibn" path="res://derevo.tscn" id="3_1kyvg"]
+[ext_resource type="Script" path="res://control.gd" id="5_0og8f"]
+[ext_resource type="Script" path="res://hp.gd" id="6_s8uuw"]
+[ext_resource type="PackedScene" uid="uid://bnejvydf0eqiv" path="res://tank.tscn" id="7_s4div"]
+[ext_resource type="PackedScene" uid="uid://b3w7tdolomhqj" path="res://pause_menu.tscn" id="8_61edk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmjum"]
+texture = ExtResource("2_df3go")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ggsbw"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_dmjum")
+
+[node name="World" type="Node"]
+script = ExtResource("1_kpvi1")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(19, 605)
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(19, 605)
+tile_set = SubResource("TileSet_ggsbw")
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("2_5yuar")]
+position = Vector2(73, 571)
+
+[node name="Node2D2" parent="." instance=ExtResource("3_1kyvg")]
+position = Vector2(621, 426)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 375.0
+offset_top = 562.0
+offset_right = 436.0
+offset_bottom = 605.0
+script = ExtResource("5_0og8f")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.726
+anchor_top = -4.491
+anchor_right = 10.908
+anchor_bottom = -2.011
+offset_left = -59.286
+offset_top = -11.887
+offset_right = -2.38806
+offset_bottom = -0.526993
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = -204.0
+offset_right = 663.0
+offset_bottom = -87.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = -194.0
+offset_right = 641.0
+offset_bottom = -89.0
+text = "хуй
+"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hp" type="Label" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 130.0
+offset_bottom = 74.0
+text = "Вера в Бога"
+script = ExtResource("6_s8uuw")
+
+[node name="tank" parent="." instance=ExtResource("7_s4div")]
+position = Vector2(1100, 540)
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="Canvas" instance=ExtResource("8_61edk")]
